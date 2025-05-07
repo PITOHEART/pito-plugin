@@ -21,7 +21,7 @@ class Record(BaseModel):
 
 @app.post("/ingest")
 async def ingest(record: Record, authorization: str = Header(...)):
-    if authorization != "Bearer YOUR_VERIFICATION_TOKEN":
+    if authorization != "Bearer secret1234":
         raise HTTPException(status_code=401, detail="Unauthorized")
     # TODO: data/raw に保存するロジックをここに書く
     return {"status": "ok"}
@@ -31,7 +31,7 @@ class RetrieveQuery(BaseModel):
 
 @app.post("/retrieve")
 async def retrieve(q: RetrieveQuery, authorization: str = Header(...)):
-    if authorization != "Bearer YOUR_VERIFICATION_TOKEN":
+    if authorization != "Bearer secret1234":
         raise HTTPException(status_code=401, detail="Unauthorized")
     # TODO: ベクトル検索結果をここで返す
     return [{"id": "sample_1", "text": "過去ログ例", "score": 0.99}]
