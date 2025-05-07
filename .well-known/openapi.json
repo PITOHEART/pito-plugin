@@ -1,10 +1,11 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.1.0",
   "info": {
     "title": "Pito Memory API",
     "version": "1.0.0",
     "description": "会話ログのインジェスト＆リトリーブエンドポイント"
   },
+  "servers":[{"url":"https://1282-124-101-197-80.ngrok-free.app"}],
   "paths": {
     "/ingest": {
       "post": {
