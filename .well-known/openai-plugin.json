@@ -1,0 +1,20 @@
+{
+  "schema_version":"v1",
+  "name_for_human":"Pito Memory Plugin",
+  "name_for_model":"pito_memory",
+  "description_for_human":"会話ログを保存・検索します",
+  "auth":{
+    "type":"service_http",
+    "authorization_type":"bearer",
+    "verification_tokens":{
+      "openai":"YOUR_VERIFICATION_TOKEN"
+    }
+  },
+  "api":{
+    "type":"openapi",
+    "url":"https://<NGROK_SUBDOMAIN>.ngrok.io/openapi.json",
+    "is_user_authenticated":true
+  },
+  "logo_url":"https://<NGROK_SUBDOMAIN>.ngrok.io/logo.png",
+  "contact_email":"you@example.com"
+}

@@ -1,0 +1,83 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Pito Memory API",
+    "version": "1.0.0",
+    "description": "会話ログのインジェスト＆リトリーブエンドポイント"
+  },
+  "paths": {
+    "/ingest": {
+      "post": {
+        "operationId": "ingest",
+        "description": "会話ログを保存します",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Record" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "保存成功" }
+        }
+      }
+    },
+    "/retrieve": {
+      "post": {
+        "operationId": "retrieve",
+        "description": "類似ログを取得します",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/RetrieveQuery" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "取得成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/RetrieveResult" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Record": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "speaker": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "text": { "type": "string" }
+        },
+        "required": ["id", "speaker", "timestamp", "text"]
+      },
+      "RetrieveQuery": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string" }
+        },
+        "required": ["query"]
+      },
+      "RetrieveResult": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "text": { "type": "string" },
+          "score": { "type": "number" }
+        }
+      }
+    }
+  }
+}
